@@ -1,0 +1,73 @@
+network unknown{
+}
+variable RP {
+    type discrete [2]{lower, higher};
+}
+variable CP {
+    type discrete [2]{lower, higher};
+}
+variable LPDI-Signal {
+    type discrete [2]{yes, no};
+}
+variable PCIF {
+    type discrete [2]{yes, no};
+}
+variable SCIF {
+    type discrete [2]{yes, no};
+}
+variable TCIF {
+    type discrete [2]{yes, no};
+}
+variable ICS {
+    type discrete [2]{yes, no};
+}
+variable PTR001BA-WL {
+    type discrete [2]{lower, higher};
+}
+variable LHSI-DI {
+    type discrete [2]{yes, no};
+}
+probability ( RP ) {
+  table 0.1, 0.9;
+}
+probability ( CP ) {
+  table 0.9, 0.1;
+}
+probability ( LPDI-Signal | RP, CP ) {
+  (lower, higher) 0.99, 0.01;
+  (lower, lower) 0.99, 0.01;
+  (higher, higher) 0.99, 0.01;
+  (higher, lower) 0.01, 0.99;
+}
+probability ( PCIF ) {
+  table 0.1, 0.9;
+}
+probability ( PTR001BA-WL ) {
+  table 0.1, 0.9;
+}
+probability ( SCIF ) {
+  table 0.1, 0.9;
+}
+probability ( TCIF ) {
+  table 0.1, 0.9;
+}
+probability ( ICS | PCIF, SCIF, TCIF ) {
+  (yes, yes, yes) 0.99, 0.01;
+  (yes, yes, no) 0.99, 0.01;
+  (yes, no, yes) 0.99, 0.01;
+  (yes, no, no) 0.1, 0.9;
+  (no, yes, yes) 0.99, 0.01;
+  (no, yes, no) 0.1, 0.9;
+  (no, no, yes) 0.1, 0.9;
+  (no, no, no) 0.01, 0.99;
+}
+probability ( LHSI-DI | LPDI-Signal, ICS, PTR001BA-WL) {
+  (yes, yes, lower) 0.99, 0.01;
+  (yes, yes, higher) 0.1, 0.9;
+  (yes, no, lower) 0.1, 0.9;
+  (yes, no, higher) 0.01, 0.99;
+  (no, yes, lower) 0.9, 0.1;
+  (no, yes, higher) 0.01, 0.99;
+  (no, no, lower) 0.1, 0.9;
+  (no, no, higher) 0.01, 0.99;
+}

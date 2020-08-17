@@ -1,0 +1,150 @@
+network unknown{
+}
+variable PP {
+    type discrete [2]{lower, higher};
+}
+variable RIS001VP {
+    type discrete [2]{open, close};
+}
+variable RIS001BA-P {
+    type discrete [2]{lower, higher};
+}
+variable RIS001BA-WL {
+    type discrete [2]{lower, higher};
+}
+variable RIS001BA-States {
+    type discrete [2]{yes, no};
+}
+variable SP {
+    type discrete [2]{lower, higher};
+}
+variable RIS002VP {
+    type discrete [2]{open, close};
+}
+variable RIS002BA-P {
+    type discrete [2]{lower, higher};
+}
+variable RIS002BA-WL {
+    type discrete [2]{lower, higher};
+}
+variable RIS002BA-States {
+    type discrete [2]{yes, no};
+}
+variable TP {
+    type discrete [2]{lower, higher};
+}
+variable RIS003VP {
+    type discrete [2]{open, close};
+}
+variable RIS003BA-P {
+    type discrete [2]{lower, higher};
+}
+variable RIS003BA-WL {
+    type discrete [2]{lower, higher};
+}
+variable RIS003BA-States {
+    type discrete [2]{yes, no};
+}
+variable MPSI {
+    type discrete [2]{yes, no};
+}
+probability ( PP ) {
+  table 0.01, 0.99;
+}
+probability ( RIS001VP ) {
+  table 0.99, 0.01;
+}
+probability ( RIS001BA-P ) {
+  table 0.01, 0.99;
+}
+probability ( RIS001BA-WL ) {
+  table 0.01, 0.99;
+}
+probability ( RIS001BA-States | PP, RIS001VP, RIS001BA-P, RIS001BA-WL ) {
+  (lower, open, lower, lower) 0.99, 0.01;
+  (lower, open, lower, higher) 0.3, 0.7;
+  (lower, open, higher, lower) 0.3, 0.7;
+  (lower, open, higher, higher) 0.1, 0.9;
+  (lower, close, lower, lower) 0.5, 0.5;
+  (lower, close, lower, higher) 0.1, 0.9;
+  (lower, close, higher, lower) 0.1, 0.9;
+  (lower, close, higher, higher) 0.01, 0.99;
+  (higher, open, lower, lower) 0.7, 0.3;
+  (higher, open, lower, higher) 0.3, 0.7;
+  (higher, open, higher, lower) 0.3, 0.7;
+  (higher, open, higher, higher) 0.1, 0.9;
+  (higher, close, lower, lower) 0.3, 0.7;
+  (higher, close, lower, higher) 0.1, 0.9;
+  (higher, close, higher, lower) 0.1, 0.9;
+  (higher, close, higher, higher) 0.01, 0.99;
+}
+probability ( SP ) {
+  table 0.01, 0.99;
+}
+probability ( RIS002VP ) {
+  table 0.99, 0.01;
+}
+probability ( RIS002BA-P ) {
+  table 0.01, 0.99;
+}
+probability ( RIS002BA-WL ) {
+  table 0.01, 0.99;
+}
+probability ( RIS002BA-States | SP, RIS002VP, RIS002BA-P, RIS002BA-WL ) {
+  (lower, open, lower, lower) 0.99, 0.01;
+  (lower, open, lower, higher) 0.3, 0.7;
+  (lower, open, higher, lower) 0.3, 0.7;
+  (lower, open, higher, higher) 0.1, 0.9;
+  (lower, close, lower, lower) 0.5, 0.5;
+  (lower, close, lower, higher) 0.1, 0.9;
+  (lower, close, higher, lower) 0.1, 0.9;
+  (lower, close, higher, higher) 0.01, 0.99;
+  (higher, open, lower, lower) 0.7, 0.3;
+  (higher, open, lower, higher) 0.3, 0.7;
+  (higher, open, higher, lower) 0.3, 0.7;
+  (higher, open, higher, higher) 0.1, 0.9;
+  (higher, close, lower, lower) 0.3, 0.7;
+  (higher, close, lower, higher) 0.1, 0.9;
+  (higher, close, higher, lower) 0.1, 0.9;
+  (higher, close, higher, higher) 0.01, 0.99;
+}
+probability ( TP ) {
+  table 0.01, 0.99;
+}
+probability ( RIS003VP ) {
+  table 0.99, 0.01;
+}
+probability ( RIS003BA-P ) {
+  table 0.01, 0.99;
+}
+probability ( RIS003BA-WL ) {
+  table 0.01, 0.99;
+}
+probability ( RIS003BA-States | TP, RIS003VP, RIS003BA-P, RIS003BA-WL ) {
+  (lower, open, lower, lower) 0.99, 0.01;
+  (lower, open, lower, higher) 0.3, 0.7;
+  (lower, open, higher, lower) 0.3, 0.7;
+  (lower, open, higher, higher) 0.1, 0.9;
+  (lower, close, lower, lower) 0.5, 0.5;
+  (lower, close, lower, higher) 0.1, 0.9;
+  (lower, close, higher, lower) 0.1, 0.9;
+  (lower, close, higher, higher) 0.01, 0.99;
+  (higher, open, lower, lower) 0.7, 0.3;
+  (higher, open, lower, higher) 0.3, 0.7;
+  (higher, open, higher, lower) 0.3, 0.7;
+  (higher, open, higher, higher) 0.1, 0.9;
+  (higher, close, lower, lower) 0.3, 0.7;
+  (higher, close, lower, higher) 0.1, 0.9;
+  (higher, close, higher, lower) 0.1, 0.9;
+  (higher, close, higher, higher) 0.01, 0.99;
+}
+probability ( MPSI | RIS001BA-States, RIS002BA-States, RIS003BA-States ){
+    (yes, yes, yes) 0.99, 0.01;
+    (yes, yes, no) 0.99, 0.01;
+    (yes, no, yes) 0.99, 0.01;
+    (yes, no, no) 0.01, 0.99;
+    (no, yes, yes) 0.99, 0.01;
+    (no, yes, no) 0.01, 0.99;
+    (no, no, yes) 0.01, 0.99;
+    (no, no, no) 0.01, 0.99;
+}

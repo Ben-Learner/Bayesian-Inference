@@ -1,0 +1,37 @@
+##连续性节点
+CR     安全壳放射性
+CP     安全壳压力
+CT     安全壳温度
+PWL    地坑水位
+PCCL   1#冷却剂流量
+SCCL   2#冷却剂流量
+TCCL   3#冷却剂流量
+PP     1#冷却剂压力
+SP     2#冷却剂压力
+TP     3#冷却剂压力
+AP     一回路冷却剂平均压力
+RP     稳压器压力
+RWL    稳压器水位
+
+RIS001BA-P    RIS001BA安注箱压力
+RIS001BA-WL   RIS001BA安注箱水位
+RIS002BA-P    RIS002BA安注箱压力
+RIS002BA-WL   RIS002BA安注箱水位
+RIS003BA-P    RIS003BA安注箱压力
+RIS003BA-WL   RIS003BA安注箱水位
+PTR001BA-P    PTR001BA换料水箱压力
+PTR001BA-WL   PTR001BA换料水箱水位
+PCIF          1#注入冷段管线流量（低压安注）
+SCIF          2#注入冷段管线流量
+TCIF          3#注入冷段管线流量
+
+##始发事件
+LLOCA  大破口失水事故
+##题头事件
+MPSI    中压安注
+EAS-DS  安全壳直接喷淋
+LHSI-DI 低压安注直接注入
+
+##其他
+LPDI-Signal 低压安注直接注入启动信号
+

@@ -99,7 +99,7 @@ for i in range(CPD_df.shape[0]):
 # print(LLOCA_model.check_model())
 # print(LLOCA_model.get_cpds('稳压器压力').values)
 LLOCA_infer = VariableElimination(LLOCA_model)
-q = LLOCA_infer.query(variables=['LLOCA'],evidence={'一回路平均压力':0,'安全壳放射性':2},joint=False)
+q = LLOCA_infer.query(variables=['LLOCA'],evidence={'稳压器水位':0,'安全壳压力':1},joint=False)
 print(q['LLOCA'])
 
 

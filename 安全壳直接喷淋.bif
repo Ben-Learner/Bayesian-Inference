@@ -1,0 +1,90 @@
+network unknown {
+}
+variable CP {
+    type discrete [2] {higher, lower};
+}
+variable EAS163VB {
+    type discrete [2] {open, close};
+}
+variable EAS001VB {
+    type discrete [2] {open, close};
+}
+variable PTR001BA-WL {
+    type discrete [2] {lower, higher};
+}
+variable ASS-States {
+    type discrete [2] {yes, no};
+}
+variable EAS162VB {
+    type discrete [2] {open, close};
+}
+variable EAS002VB {
+    type discrete [2] {open, close};
+}
+variable BSS-States {
+    type discrete [2] {yes, no};
+}
+variable EAS-DS {
+    type discrete [2] {yes, no};
+}
+probability ( CP ) {
+  table 0.01, 0.99;
+}
+probability ( EAS163VB ) {
+  table 0.99, 0.01;
+}
+probability ( EAS001VB ) {
+  table 0.99, 0.01;
+}
+probability ( PTR001BA-WL ) {
+  table 0.99, 0.01;
+}
+probability ( ASS-States | CP, EAS163VB, EAS001VB, PTR001BA-WL) {
+  (higher, open, open, lower) 0.99, 0.01;
+  (higher, open, open, higher) 0.3, 0.7;
+  (higher, open, close, lower) 0.7, 0.3;
+  (higher, open, close, higher) 0.01, 0.99;
+  (higher, close, open, lower) 0.01, 0.99;
+  (higher, close, open, higher) 0.01, 0.99;
+  (higher, close, close, lower) 0.01, 0.99;
+  (higher, close, close, higher) 0.01, 0.99;
+  (lower, open, open, lower) 0.7, 0.3;
+  (lower, open, open, higher) 0.2, 0.8;
+  (lower, open, close, lower) 0.7, 0.3;
+  (lower, open, close, higher) 0.01, 0.99;
+  (lower, close, open, lower) 0.01, 0.99;
+  (lower, close, open, higher) 0.01, 0.99;
+  (lower, close, close, lower) 0.01, 0.99;
+  (lower, close, close, higher) 0.01, 0.99;
+}
+
+probability ( EAS162VB ) {
+  table 0.99, 0.01;
+}
+probability ( EAS002VB ) {
+  table 0.99, 0.01;
+}
+probability ( BSS-States | CP, EAS162VB, EAS002VB, PTR001BA-WL) {
+  (higher, open, open, lower) 0.99, 0.01;
+  (higher, open, open, higher) 0.3, 0.7;
+  (higher, open, close, lower) 0.7, 0.3;
+  (higher, open, close, higher) 0.01, 0.99;
+  (higher, close, open, lower) 0.01, 0.99;
+  (higher, close, open, higher) 0.01, 0.99;
+  (higher, close, close, lower) 0.01, 0.99;
+  (higher, close, close, higher) 0.01, 0.99;
+  (lower, open, open, lower) 0.7, 0.3;
+  (lower, open, open, higher) 0.2, 0.8;
+  (lower, open, close, lower) 0.7, 0.3;
+  (lower, open, close, higher) 0.01, 0.99;
+  (lower, close, open, lower) 0.01, 0.99;
+  (lower, close, open, higher) 0.01, 0.99;
+  (lower, close, close, lower) 0.01, 0.99;
+  (lower, close, close, higher) 0.01, 0.99;
+}
+probability ( EAS-DS | ASS-States, BSS-States ) {
+  (yes, yes) 0.99, 0.01;
+  (yes, no) 0.99, 0.01;
+  (no, yes) 0.99, 0.01;
+  (no, no) 0.01, 0.99;
+}

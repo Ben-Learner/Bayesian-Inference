@@ -1,0 +1,82 @@
+network unknown {
+}
+variable LLOCA {
+  type discrete [ 2 ] { no, yes };
+}
+variable CR {
+  type discrete [ 3 ] { lower, normal, higher };
+}
+variable CP {
+  type discrete [ 3 ] { lower, normal, higher };
+}
+variable CT {
+  type discrete [ 3 ] { lower, normal, higher };
+}
+variable PWL {
+  type discrete [ 3 ] { lower, normal, higher };
+}
+variable PCCL {
+  type discrete [ 3 ] { lower, normal, higher };
+}
+variable SCCL {
+  type discrete [ 3 ] { lower, normal, higher };
+}
+variable TCCL {
+  type discrete [ 3 ] { lower, normal, higher };
+}
+variable AP {
+  type discrete [ 3 ] { lower, normal, higher };
+}
+variable RP {
+  type discrete [ 3 ] { lower, normal, higher };
+}
+variable RWL {
+  type discrete [ 3 ] { lower, normal, higher };
+}
+
+probability ( LLOCA ) {
+  table 0.9, 0.1;
+}
+probability ( CR | LLOCA ) {
+  (no) 0, 0.95, 0.05;
+  (yes) 0, 0.05, 0.95;
+
+}
+probability ( CP | LLOCA ) {
+  (no) 0, 0.95, 0.05;
+  (yes) 0, 0.05, 0.95;
+}
+probability ( CT | LLOCA ) {
+  (no) 0, 0.95, 0.05;
+  (yes) 0, 0.05, 0.95;
+}
+probability ( PWL | LLOCA ) {
+  (no) 0.05, 0.95, 0;
+  (yes) 0, 0.05, 0.95;
+}
+probability ( PCCL | LLOCA ) {
+  (no) 0.02, 0.96, 0.02;
+  (yes) 0.99, 0.01, 0;
+}
+probability ( SCCL | LLOCA ) {
+  (no) 0.02, 0.96, 0.02;
+  (yes) 0.99, 0.01, 0;
+}
+probability ( TCCL | LLOCA ) {
+  (no) 0.02, 0.96, 0.02;
+  (yes) 0.99, 0.01, 0;
+}
+probability ( AP | LLOCA ) {
+  (no) 0, 0.95, 0.05;
+  (yes) 0.95, 0.05, 0;
+}
+probability ( RP | AP ) {
+  (lower) 0.99, 0.01, 0;
+  (normal) 0.02, 0.96, 0.02;
+  (higher) 0, 0.99, 0.01;
+}
+probability ( RWL | RP ) {
+  (lower) 0.99, 0.01, 0;
+  (normal) 0.02, 0.96, 0.02;
+  (higher) 0, 0.99, 0.01
+}
